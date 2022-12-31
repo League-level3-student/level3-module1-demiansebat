@@ -1,6 +1,11 @@
 package _00_Intro_To_ArrayLists;
 
+import java.util.ArrayList;
+
 public class _02_GuestBook {
+	public static void main(String[] args) {
+		
+
     /*
      * Create a GUI with two buttons. One button reads "Add Name" and the other
      * button reads "View Names". When the add name button is clicked, display
@@ -13,5 +18,12 @@ public class _02_GuestBook {
      * Guest #3: Greg Ganders
      * Guest #4: Donny Doners
      */
-
+	ArrayList<String>names= new ArrayList<String>();
+    // 2. Add five Strings to your list
+names.add("Bob Banders");
+names.add("Sandy Summers");
+names.add("Greg Ganders");
+names.add("Donny Doners");
+	}
+	
 }
