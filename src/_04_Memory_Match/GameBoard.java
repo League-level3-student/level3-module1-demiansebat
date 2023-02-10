@@ -18,7 +18,7 @@ public class GameBoard extends JFrame implements ActionListener {
     static Card secondSelectedCard = null;
     
     // 1. Initialize TOTAL_CARDS to 2;
-    static int TOTAL_CARDS = 0;
+    static int TOTAL_CARDS = 2;
     
     ArrayList<Card> cards;
     
@@ -42,6 +42,8 @@ public class GameBoard extends JFrame implements ActionListener {
         }
         
         // 2. Initialize the ArrayList of Cards declared above
+        
+        cards= new ArrayList();
         
         
         // 3. Create TOTAL_CARDS number of objects each with a value of 1.
