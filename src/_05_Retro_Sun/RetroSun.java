@@ -40,10 +40,12 @@ public class RetroSun extends PApplet {
 		/*
 		 * PART 1: Drawing the sun
 		 */
-
+fill(sunColors[0]);
+noStroke();
 		ellipse(400, 300, 480, 480);
-		fill(sunColors[0]);
-		noStroke();
+
+	
+	
 		// Draw an ellipse for the sun in the center of the window
 		// Use fill(sunColors[0]) to make it yellow
 		// Use noStroke() to remove the black outline
@@ -111,6 +113,7 @@ public class RetroSun extends PApplet {
 		 */
 
 		// Set the fill color to the background color
+		fill(bgColor);
 	int sunCenterX=WIDTH/2;
 	int sunRadius=width/2;
 	float y = width / 2;
@@ -120,6 +123,7 @@ public class RetroSun extends PApplet {
 	float x = sunCenterX - sunRadius;
 	// *The width can be 2 times the radius
 	float w = 2 * sunRadius;
+	
 		rect(x,y,w,h);
 		// To draw each rectangle we need to find its x, y, width, height
 		// *The y position can be any value within the sun:
@@ -127,8 +131,14 @@ public class RetroSun extends PApplet {
 
 		// Do you see a section missing from the sun like in the 3rd image?
 
-		
-		
+
+for (int i = 540; i <= 80; i--) {
+y=y-1;
+h=h-1;
+fill(bgColor);
+rect(x,y,w,h);
+}
+}		
 		
 		
 		
@@ -187,7 +197,7 @@ public class RetroSun extends PApplet {
 		 * If you want to make your retro sun look more unique, try adding reflections
 		 * and stars. See RetroSun.html in this folder for some example classes
 		 */
-	}
+	
 
 	static public void main(String[] passedArgs) {
 		PApplet.main(RetroSun.class.getName());
