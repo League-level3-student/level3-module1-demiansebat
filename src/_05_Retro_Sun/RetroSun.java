@@ -15,6 +15,7 @@ public class RetroSun extends PApplet {
 	static final int WIDTH = 800;
 	static final int HEIGHT = 600;
 
+	float g=540;
 	// RGB colors
 	int[] sunColors = { color(212, 202, 11), color(214, 198, 30), color(211, 170, 26), color(216, 157, 51),
 			color(217, 124, 64), color(213, 104, 81), color(212, 51, 98), color(215, 29, 121), color(217, 11, 139),
@@ -116,28 +117,33 @@ noStroke();
 		fill(bgColor);
 	int sunCenterX=WIDTH/2;
 	int sunRadius=width/2;
-	float y = width / 2;
+	
+double b=4;
+ g=(int)(g-b);
+
+	float y = (int)(g-b);
 	// *The height can be any value you choose:
-	float h = 40;
+	float h = (int)(100*(y/1000)-20);
+
 	// *The x position can be the center of the sun's x position minus the radius:
 	float x = sunCenterX - sunRadius;
 	// *The width can be 2 times the radius
 	float w = 2 * sunRadius;
 	
+	
+	
+	
 		rect(x,y,w,h);
+		if(h==0) {
+		//set y and h to initial values
+		}
 		// To draw each rectangle we need to find its x, y, width, height
 		// *The y position can be any value within the sun:
-		
 
 		// Do you see a section missing from the sun like in the 3rd image?
 
 
-for (int i = 540; i <= 80; i--) {
-y=y-1;
-h=h-1;
-fill(bgColor);
-rect(x,y,w,h);
-}
+
 }		
 		
 		
