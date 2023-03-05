@@ -1,6 +1,7 @@
 package _05_Retro_Sun;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import processing.core.PApplet;
@@ -14,8 +15,9 @@ import processing.core.PApplet;
 public class RetroSun extends PApplet {
 	static final int WIDTH = 800;
 	static final int HEIGHT = 600;
+	ArrayList<Rectangle> rectangles= new ArrayList <Rectangle>();	
 
-	float g=540;
+	float g = 540;
 	// RGB colors
 	int[] sunColors = { color(212, 202, 11), color(214, 198, 30), color(211, 170, 26), color(216, 157, 51),
 			color(217, 124, 64), color(213, 104, 81), color(212, 51, 98), color(215, 29, 121), color(217, 11, 139),
@@ -129,81 +131,28 @@ double b=4;
 	float x = sunCenterX - sunRadius;
 	// *The width can be 2 times the radius
 	float w = 2 * sunRadius;
+	Rectangle rect= new Rectangle(x,y,w,h);
+
+	if(rect.h<=0) {
+		g=536;
+		rect.y=536;
+		rect.h=34;
+	}
 	
-	
-	
-	
-		rect(x,y,w,h);
-		if(h==0) {
-		//set y and h to initial values
-		}
-		// To draw each rectangle we need to find its x, y, width, height
-		// *The y position can be any value within the sun:
+	rect(rect.x,rect.y,rect.w,rect.h);
+	rectangles.add(rect);
+}
+	/*
+	 * PART 5: Managing the missing sun sections
+	 *
+	 * Using a list to manage moving multiple missing sun sections
+	 */
 
-		// Do you see a section missing from the sun like in the 3rd image?
+	// Figure out how to create the other missing sun sections using the
+	// code you wrote for the 1 missing sun section.
+	// HINT: You can use the Rectangle class defined below to create
+	// a list of Rectangles.
 
-
-
-}		
-		
-		
-		
-		/*
-		 * PART 4: Moving the missing sun sections
-		 *
-		 * To move a section upwards each rectangle's y value needs to decrease. To make
-		 * the section get smaller, its height needs to also decrease.
-		 */
-
-		// Decrease the y variable of the rectangular section created in PART 3.
-		// If there isn't a variable, declare a float variable OUTSIDE of the
-		// draw function AND initialize it in the setup() function.
-
-		// Do you see the rectangle moving upwards?
-
-		// Pick a y positon to be the location when the sections stop moving up.
-		// If the rectangle's y positon is above this, move the rectangle's
-		// y position back to the bottom of the sun.
-
-		// Does the rectangle move back to the bottom?
-
-		// Decrease the the height of the rectangle as it moves upwards.
-		// Similar to the y positon, a float variable for the height needs to be
-		// created if it doesn't already exist.
-
-		// Adjust the amount to decrease so that it disappears close to the top.
-		// HINT: You can use the map() function again,
-		// h = map(y, missingSectionTopY, missingSectionBottomY, 1, 40);
-
-		// The map() function will make the value of h = 1 if y is at the top,
-		// and h = 40 if y is at the bottom.
-		
-		
-		
-		
-		
-		
-		/*
-		 * PART 5: Managing the missing sun sections
-		 *
-		 * Using a list to manage moving multiple missing sun sections
-		 */
-
-		// Figure out how to create the other missing sun sections using the
-		// code you wrote for the 1 missing sun section.
-		// HINT: You can use the Rectangle class defined below to create
-		// a list of Rectangles.
-
-		
-		
-		
-		/*
-		 * PART 6: Adding extras
-		 *
-		 * If you want to make your retro sun look more unique, try adding reflections
-		 * and stars. See RetroSun.html in this folder for some example classes
-		 */
-	
 
 	static public void main(String[] passedArgs) {
 		PApplet.main(RetroSun.class.getName());
