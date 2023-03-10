@@ -132,15 +132,32 @@ double b=4;
 	// *The width can be 2 times the radius
 	float w = 2 * sunRadius;
 	Rectangle rect= new Rectangle(x,y,w,h);
-
+	Rectangle rect2= new Rectangle(x,y+160,w,h+20);
+	Rectangle rect3= new Rectangle(x,y+320,w,h+40);
 	if(rect.h<=0) {
-		g=536;
+		
 		rect.y=536;
 		rect.h=34;
 	}
+	if(rect2.h<=0) {
+	
+		rect2.y=536;
+		rect2.h=54;
+		
+	}
+	if(rect3.h<=0) {
+		g=536;
+		rect3.y=536;
+		rect3.h=54;
+		
+	}
 	
 	rect(rect.x,rect.y,rect.w,rect.h);
+	rect(rect2.x,rect2.y,rect2.w,rect2.h);
+	rect(rect3.x,rect3.y,rect3.w,rect3.h);
 	rectangles.add(rect);
+	rectangles.add(rect2);
+	rectangles.add(rect3);
 }
 	/*
 	 * PART 5: Managing the missing sun sections

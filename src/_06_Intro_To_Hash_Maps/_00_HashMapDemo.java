@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class _00_HashMapDemo {
     public static void main(String[] args) {
-        
+
         /*
          * Declare and Initializing a HashMap of id's and students
          */
