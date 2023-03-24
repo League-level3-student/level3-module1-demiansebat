@@ -60,4 +60,9 @@ public class Schedule {
             JOptionPane.showMessageDialog(null, dayOfTheWeek + " is not a day of the week!");
         }
     }
+
+	public Object getSchedule(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
