@@ -15,7 +15,7 @@ public class MeetingScheduler {
 	 * Example: person1 availability - Monday at 9, Tuesday at 14, and Friday 10
 	 * person2 availability - Tuesday at 14, Friday 8, and Monday at 9 The returned
 	 * HashMap should contain: Tuesday 14 and Monday 9
-	 * 
+	 **
 	 * The returned Schedule object represents the times both people are available
 	 * for a meeting.
 	 * 
