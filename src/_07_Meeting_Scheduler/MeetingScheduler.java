@@ -25,19 +25,23 @@ public class MeetingScheduler {
 	 */
 
 	public static Schedule getMutualAvailability(Schedule person1, Schedule person2) {
-	Schedule mutualSchedule;
+	Schedule mutualSchedule=new Schedule();
 	HashMap<String, ArrayList<Integer>> schedule1=person1.getSchedule();
 	HashMap<String, ArrayList<Integer>> schedule2=person2.getSchedule();
-        for (int i = 0; i<schedule1.size() ; i++) {
-		for(int j=0; j<schedule2.size() ; j++) {
-		for (String day : schedule1.keySet()) {
-			if(schedule1.get(day)==schedule2.get(day)  //use an && and make sure value of day is equal to value of other day) {
-		}
-
+		for (String day : schedule2.keySet()) {
+			ArrayList<Integer> day1=schedule1.get(day);
+			ArrayList<Integer> day2= schedule2.get(day);
+			for (int i = 0; i < day1.size(); i++) {
+				for (int j = 0; j < day2.size(); j++) {
+					if (day1.get(i).equals(day2.get(j))) {
+						mutualSchedule.addAvailability(day, day1.get(i));
+					}
+					
+				}
 			}
 
 			}
-			}
+		System.out.println(mutualSchedule);
         return mutualSchedule;
 	}
 }
