@@ -42,6 +42,7 @@ public class CaliforniaWeather implements ActionListener {
 	  
     	JButton button= new JButton("City Search");
     	JButton city= new JButton("Condition Search");
+    	JButton temp= new JButton("Temp Search");
 	JFrame frame= new JFrame();
 	JPanel panel= new JPanel();
  
@@ -52,6 +53,7 @@ public class CaliforniaWeather implements ActionListener {
     	frame.add(panel);
     	panel.add(button);
     	panel.add(city);
+    	panel.add(temp);
     	frame.setVisible(true);
     	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	frame.pack();
@@ -76,19 +78,33 @@ public class CaliforniaWeather implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==temp) {
+			String lowTemp= JOptionPane.showInputDialog("Enter a minimum temperature:");
+			String highTemp= JOptionPane.showInputDialog("Enter a maximum temperature:");
+		}
+		
+		
+		
+		
 		if(e.getSource()==city) {
-			String condition=JOptionPane.showInputDialog("Enter a condition (Overcast, Partly Cloudy, Mostly Cloudy, Clear:");
-		for (int i = 0; i < weatherData.size(); i++) {
+			 String cities="";
+			String condition=JOptionPane.showInputDialog("Enter a condition (Overcast, Partly Cloudy, Mostly Cloudy, Clear):");
+			for(String key: weatherData.keySet()) {
 	//iterate through hashmap and list all cities with a certain value		if(weatherData.get(e))==condition) {
 				
+				if(weatherData.get(key).getSummary().equals(condition)) {
+					cities=cities+key+"\n";
+				}
 			}
+			JOptionPane.showMessageDialog(null,cities);
 		}
-			
+		
 	
 			
 			if(e.getSource()==button) {
 		String search=JOptionPane.showInputDialog("Search for a city in california:");
 		 String cityName = Utilities.capitalizeWords( search );
+
 		    WeatherData datum = weatherData.get(cityName);
 		 if(weatherData.containsKey(search)){
 			
@@ -106,5 +122,3 @@ public class CaliforniaWeather implements ActionListener {
 			
 		}
 		}
-	////
-	}
