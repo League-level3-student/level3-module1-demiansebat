@@ -6,7 +6,9 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
@@ -34,6 +36,8 @@ import javax.swing.Timer;
  * https://docs.oracle.com/javase/7/docs/api/java/util/Calendar.html
  */
 
+
+
 public class WorldClocks implements ActionListener {
     ClockUtilities clockUtil;
     Timer timer;
@@ -42,10 +46,12 @@ public class WorldClocks implements ActionListener {
     JFrame frame;
     JPanel panel;
     JTextArea textArea;
-    
+    JButton button= new JButton("Add City!");
     String city;
     String dateStr;
     String timeStr;
+    
+    
     
     public WorldClocks() {
         clockUtil = new ClockUtilities();
@@ -71,7 +77,9 @@ public class WorldClocks implements ActionListener {
         frame.add(panel);
         panel.add(textArea);
         textArea.setText(city + "\n" + dateStr);
-        
+      
+        button.addActionListener(this);
+        panel.add(button);
         // This Timer object is set to call the actionPerformed() method every
         // 1000 milliseconds
         timer = new Timer(1000, this);
@@ -79,11 +87,22 @@ public class WorldClocks implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent arg0) {
+    public void actionPerformed(ActionEvent e) {
         Calendar c = Calendar.getInstance(timeZone);
         String militaryTime = c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE) + ":" + c.get(Calendar.SECOND);
         String twelveHourTime = " [" + c.get(Calendar.HOUR) + ":" + c.get(Calendar.MINUTE) + ":" + c.get(Calendar.SECOND) + "]";
         timeStr = militaryTime + twelveHourTime;
+        if(e.getSource()==button) {
+        	String cityName= JOptionPane.showInputDialog("Enter the name of a city");
+        	timeZone = clockUtil.getTimeZoneFromCityName(cityName);
+            
+            Calendar calendar = Calendar.getInstance(timeZone);
+            String month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
+            String dayOfWeek = calendar.getDisplayName( Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault());
+            dateStr = dayOfWeek + " " + month + " " + calendar.get(Calendar.DAY_OF_MONTH) + " " + calendar.get(Calendar.YEAR);
+            
+        	
+        }
         
         System.out.println(timeStr);
         textArea.setText(city + "\n" + dateStr + "\n" + timeStr);

@@ -38,8 +38,7 @@ public class ClockUtilities {
         TimeZone timeZoneObj = null;
 
         if (!requestedCity.contains(",")) {
-            JOptionPane.showMessageDialog(null,
-                    "ERROR: Input must be in the format city, country [" + requestedCity + "]");
+            JOptionPane.showMessageDialog(null,"ERROR: Input must be in the format city, country [" + requestedCity + "]");
             return null;
         }
 
