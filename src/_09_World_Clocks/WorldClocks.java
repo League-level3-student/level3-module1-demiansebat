@@ -2,6 +2,7 @@ package _09_World_Clocks;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -50,7 +51,9 @@ public class WorldClocks implements ActionListener {
     String city;
     String dateStr;
     String timeStr;
-    
+    ArrayList <Calendar> calendars= new ArrayList();
+    ArrayList <TimeZone> timeZones= new ArrayList();
+    ArrayList <String> cityNames=  new ArrayList();
     
     
     public WorldClocks() {
@@ -58,9 +61,11 @@ public class WorldClocks implements ActionListener {
 
         // The format for the city must be: city, country (all caps)
         city = "Chicago, US";
+        cityNames.add(city);
         timeZone = clockUtil.getTimeZoneFromCityName(city);
-        
+        timeZones.add(timeZone);
         Calendar calendar = Calendar.getInstance(timeZone);
+        calendars.add(calendar);
         String month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
         String dayOfWeek = calendar.getDisplayName( Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault());
         dateStr = dayOfWeek + " " + month + " " + calendar.get(Calendar.DAY_OF_MONTH) + " " + calendar.get(Calendar.YEAR);
@@ -89,23 +94,40 @@ public class WorldClocks implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Calendar c = Calendar.getInstance(timeZone);
-        String militaryTime = c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE) + ":" + c.get(Calendar.SECOND);
-        String twelveHourTime = " [" + c.get(Calendar.HOUR) + ":" + c.get(Calendar.MINUTE) + ":" + c.get(Calendar.SECOND) + "]";
-        timeStr = militaryTime + twelveHourTime;
+        //String militaryTime = c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE) + ":" + c.get(Calendar.SECOND);
+        //String twelveHourTime = " [" + c.get(Calendar.HOUR) + ":" + c.get(Calendar.MINUTE) + ":" + c.get(Calendar.SECOND) + "]";
+      
         if(e.getSource()==button) {
         	String cityName= JOptionPane.showInputDialog("Enter the name of a city");
-        	timeZone = clockUtil.getTimeZoneFromCityName(cityName);
-            
+        	TimeZone timeZone = clockUtil.getTimeZoneFromCityName(cityName);
+        	timeZones.add(timeZone);
             Calendar calendar = Calendar.getInstance(timeZone);
-            String month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
-            String dayOfWeek = calendar.getDisplayName( Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault());
-            dateStr = dayOfWeek + " " + month + " " + calendar.get(Calendar.DAY_OF_MONTH) + " " + calendar.get(Calendar.YEAR);
+            calendars.add(calendar);
+            cityNames.add(cityName);
+           // String month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
+           // String dayOfWeek = calendar.getDisplayName( Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault());
+        
             
         	
         }
         
-        System.out.println(timeStr);
-        textArea.setText(city + "\n" + dateStr + "\n" + timeStr);
+       // System.out.println(timeStr);
+        String newText="";
+        for (int i = 0; i < cityNames.size(); i++) {
+        	TimeZone times=timeZones.get(i);
+        	Calendar cal=Calendar.getInstance(times);
+        	String cityName=cityNames.get(i);
+        	 String militaryTime = cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND);
+             String twelveHourTime = " [" + cal.get(Calendar.HOUR) + ":" + cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND) + "]";
+             String month = cal.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
+             String dayOfWeek = cal.getDisplayName( Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault());
+             String time = militaryTime + twelveHourTime;
+             String date = dayOfWeek + " " + month + " " + cal.get(Calendar.DAY_OF_MONTH) + " " + cal.get(Calendar.YEAR);
+             newText+=cityName+ "\n" + date + "\n" + time+"\n\n";
+             System.out.println(time);
+
+		}
+textArea.setText(newText);
         frame.pack();
     }
 }
